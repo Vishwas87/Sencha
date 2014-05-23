@@ -1,0 +1,20 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "controllers": [
+            "TemplateCnt_tpl",
+            "MainCnt"
+        ],
+        "name": "Metro",
+        "views": [
+            "AppWindow_tpl",
+            "W8Preloader"
+        ]
+    },
+    "designerId": "application"
+}

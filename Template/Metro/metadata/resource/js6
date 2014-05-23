@@ -1,0 +1,13 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js6",
+        "url": "../../../libJS/TemplateMetro/W8Tile.js"
+    },
+    "designerId": "79d42716-b77c-4e91-938a-25da4629fca8"
+}

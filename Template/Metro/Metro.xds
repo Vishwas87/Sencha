@@ -1,0 +1,69 @@
+{
+    "name": "Metro",
+    "settings": {
+        "cmd": {
+            "license": "commercial",
+            "cmdVersion": "4.0.4.84",
+            "frameworkVersion": "4.2.1.883"
+        },
+        "canvasControls": {
+            "viewportSize": {
+                "name": "Auto Expand",
+                "builtIn": true,
+                "height": null,
+                "width": null
+            }
+        },
+        "urlPrefix": "",
+        "exportPath": "",
+        "spacesToIndent": 4,
+        "sdkPath": "",
+        "lineEnding": "LF",
+        "genTimestamps": false,
+        "cacheBust": false,
+        "buildShouldOverwriteIndex": true,
+        "generateArchitectVersion": true
+    },
+    "xdsVersion": "3.0.4",
+    "xdsBuild": 1386,
+    "schemaVersion": 1,
+    "upgradeVersion": 300000000004,
+    "framework": "ext42",
+    "viewOrderMap": {
+        "view": [
+            "125e5931-4d6c-45bd-9275-146d60d73e40",
+            "f8e8e983-cd34-496b-b757-e98edac4e462"
+        ],
+        "store": [
+            "f041cc93-ce45-4d54-8390-445521751312",
+            "1d821dae-0978-4e1b-b953-126a4e933885",
+            "309e17b5-a834-49d7-9c8d-dbd3f682948a"
+        ],
+        "controller": [
+            "77058db6-3210-470a-b55e-545570c7bfbe",
+            "39fe22be-0ab0-4673-9e3d-5230f72a3459"
+        ],
+        "model": [
+            "c62ed77a-61a9-416a-b155-1a957ca11d33",
+            "69d2ca63-69bd-47d3-af5d-ee3696521c6d"
+        ],
+        "resource": [
+            "038a4fdf-3cdf-4f59-af52-7c5e736211f1",
+            "0187786f-2a0c-4859-b753-22b466c157ce",
+            "684dfbe5-842e-4cca-b8f3-9977ddda7ad7",
+            "85c323af-85cd-4491-abcc-63c488700ac4",
+            "eee79165-141c-45b8-9d98-79cb99ea839b",
+            "5933cf96-242e-413f-989b-7d2f39e2a9d7",
+            "af3afdd3-44a2-4c94-8d52-6b59441a68f9",
+            "d558aadb-0acb-4128-ba17-8256a2999f1f",
+            "9d634d86-a99a-46c8-b55a-943f5da850ae",
+            "79d42716-b77c-4e91-938a-25da4629fca8",
+            "622b390b-4543-4bf2-a110-9e3ec7ad33c8",
+            "e01b4a99-5221-4bcb-b1a2-501fab1e520c",
+            "bd54b91f-2dba-4bcc-846b-d34e3d518c48"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}

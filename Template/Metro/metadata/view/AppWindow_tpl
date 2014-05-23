@@ -1,0 +1,678 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "bodyCls": [
+            "metro_appWindowTplBody"
+        ],
+        "border": false,
+        "closable": false,
+        "cls": "metro_appWindowTpl",
+        "designer|initialView": true,
+        "designer|userAlias": "appwindowTpl",
+        "designer|userClassName": "AppWindow_tpl",
+        "draggable": false,
+        "frameHeader": false,
+        "header": false,
+        "height": 250,
+        "layout": "border",
+        "maximized": true,
+        "mixins": [
+            "{",
+            "    mix: 'MetroMixin.view.AppWindow_tpl'",
+            "}"
+        ],
+        "overlapHeader": false,
+        "requires": [
+            "Ext.dd.ScrollManager",
+            "Ext.util.Point",
+            "Ext.dd.DragZone",
+            "Ext.dd.DropZone"
+        ],
+        "resizable": [
+            "false"
+        ],
+        "shadow": false,
+        "title": null,
+        "width": 400
+    },
+    "designerId": "125e5931-4d6c-45bd-9275-146d60d73e40",
+    "cn": [
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onWindowBeforeRender",
+                "implHandler": [
+                    "var sidebar = component.down(\"dataview[role=sidebar]\");",
+                    "console.log(sidebar);",
+                    "var win = component;",
+                    "sidebar.on(\"viewready\",function(){",
+                    "",
+                    "    if(win.prefs)",
+                    "    {",
+                    "        var keys = Object.keys(win.prefs.sidebar);",
+                    "        var arr = [];",
+                    "        Ext.each(keys,function(r){",
+                    "            //component.Tpl_Sidebar_vw_addNewTile(recs[r]);",
+                    "            arr.push(win.prefs.sidebar[r]);",
+                    "        });",
+                    "        console.log(arr);",
+                    "        if(arr.length > 0)win.AppWindow_tpl_addNewTile(arr);",
+                    "",
+                    "    }",
+                    "",
+                    "});"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "designerId": "e7a57b4f-83e6-4bb8-b536-86512d5e1ea4"
+        },
+        {
+            "type": "Ext.view.View",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoScroll": true,
+                "cls": "metro_appWindowTpl_sidebar",
+                "designer|displayName": "sidebar",
+                "dragItemSize": [
+                    "{",
+                    "    width: 100,",
+                    "    height: 100",
+                    "}"
+                ],
+                "itemSelector": "div.metro_appWindowTpl_sidebar_wdg",
+                "layout|region": "east",
+                "maxWidth": 325,
+                "minWidth": 310,
+                "preloaderSize": [
+                    "{",
+                    "    width: 48,",
+                    "    height: 48",
+                    "}"
+                ],
+                "role": "sidebar",
+                "store": "TemplateStr_RunningWidget",
+                "width": 310
+            },
+            "configAlternates": {
+                "preloaderSize": "object",
+                "dragItemSize": "object"
+            },
+            "designerId": "a16fcfb5-ade1-4e79-935e-15d4f26dde2c",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "preloaderSize",
+                    "type": "string"
+                },
+                {
+                    "group": "(Custom Properties)",
+                    "name": "dragItemSize",
+                    "type": "string"
+                },
+                {
+                    "group": "(Custom Properties)",
+                    "name": "role",
+                    "type": "string"
+                }
+            ],
+            "cn": [
+                {
+                    "type": "Ext.XTemplate",
+                    "reference": {
+                        "name": "itemTpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "itemTpl",
+                        "implHandler": [
+                            "<tpl for =\".\">",
+                            "        <div class =\"metro_appWindowTpl_sidebar_wdg {cls}\" ",
+                            "             id = \"app_{app_id}{multirunning:this.getUnique}\" >",
+                            "            <img src=\"app/resources/img/preloader.GIF\" ",
+                            "                 id=\"{app_id}{multirunning:this.getUnique}_preloader\" ",
+                            "                 class=\"metro_appWindow_preloader_wdg\">",
+                            "            <div id=\"{app_id}{multirunning:this.getUnique}_body\" ",
+                            "                 style=\"display:none;\"  class=\"metro_appWindowTpl_sidebar_body_wdg\"></div>",
+                            "        </div>    ",
+                            "</tpl>    ",
+                            "",
+                            "",
+                            ""
+                        ]
+                    },
+                    "designerId": "020171af-340d-42c7-b4c6-01de2feb2612",
+                    "cn": [
+                        {
+                            "type": "templatefunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "multirunning"
+                                ],
+                                "fn": "getUnique",
+                                "implHandler": [
+                                    "if(multirunning) return \"_\"+Ext.id();",
+                                    "return \"\";"
+                                ]
+                            },
+                            "designerId": "f7339a00-be17-4e7e-a935-1ba5e594631a"
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onDataviewRender",
+                        "implHandler": [
+                            "component.el.on(\"contextmenu\", Ext.emptyFn, null, {preventDefault: true}); //Disable context menu",
+                            "component.lastTarget = null; //Usefull for sorting tiles",
+                            "var win = component.up(\"window\");",
+                            "var appRef = CloudCommon.getAppRef(win.$className);",
+                            "",
+                            "var controller = appRef.app.getTemplateCnt_tplController();",
+                            "",
+                            "if(win)",
+                            "{",
+                            "    Ext.dd.ScrollManager.register(component.el);",
+                            "    component.el.ddScrollConfig = {",
+                            "        vthresh: 50,",
+                            "        hthresh: -1,",
+                            "        increment: 200,",
+                            "        animate:true",
+                            "    };",
+                            "",
+                            "    component.dragZone = new Ext.dd.DragZone(component.el, {",
+                            "        containerScroll: true,",
+                            "        ddGroup: CloudCommon.getNamespaceFromClass(component.$className),",
+                            "        endDrag : function(e) {",
+                            "            console.log(\"save\");",
+                            "            controller.TemplateCnt_tpl_saveSidebarConfiguration();",
+                            "            if (!component.dragData) { return true; }",
+                            "            component.fireEvent('itemdrop', component.dragData.info.origIdx,",
+                            "                                component.dragData.info.lastIdx, component.dragData.info.record);",
+                            "            return true;",
+                            "        },",
+                            "        getDragData: function(e) {",
+                            "            var sourceEl = e.getTarget(component.itemSelector);",
+                            "            var idx = component.indexOf(sourceEl);",
+                            "            if (sourceEl) {",
+                            "                d = sourceEl.cloneNode(false);",
+                            "                d.style.width = component.dragItemSize.width +\"px\";",
+                            "                d.style.height = component.dragItemSize.height +\"px\";",
+                            "                d.id = Ext.id();",
+                            "                return component.dragData = {",
+                            "                    sourceEl: sourceEl,",
+                            "                    repairXY: Ext.fly(sourceEl).getXY(),",
+                            "                    ddel: d,",
+                            "                    record:(component.store.getAt(idx))?component.store.getAt(idx):null",
+                            "                };",
+                            "            }",
+                            "        },",
+                            "        getRepairXY: function() {",
+                            "            return this.dragData.repairXY;",
+                            "        },",
+                            "        onStartDrag:function(x,y)",
+                            "        {",
+                            "        },",
+                            "        onBeforeDrag :function( data, e )",
+                            "        {",
+                            "        },",
+                            "        onMouseDown:function( e )",
+                            "        {",
+                            "            var t,idx,record;",
+                            "            component.dragData.info = null;",
+                            "            try {",
+                            "                t = e.getTarget(component.itemSelector);",
+                            "                this.setDelta(50,50);",
+                            "                idx = component.indexOf(t);",
+                            "                record = component.store.getAt(idx);",
+                            "                // Found a record to move",
+                            "                if (t && record) {",
+                            "                    component.dragData.info = {",
+                            "                        origIdx : idx,",
+                            "                        lastIdx : idx,",
+                            "                        record  : record,",
+                            "                        node: t",
+                            "                    };",
+                            "                    return true;",
+                            "                }",
+                            "            } catch (ex) { console.log(ex); component.dragData.info = null; }",
+                            "            return false;",
+                            "        },",
+                            "        onDrag : function(e) {",
+                            "            var t,idx,record,data = component.dragData.info;",
+                            "            if (!data) { return false; }",
+                            "            try {",
+                            "                t = e.getTarget(component.itemSelector);",
+                            "                idx = component.indexOf(t);",
+                            "                record = component.store.getAt(idx);",
+                            "",
+                            "                if (idx === data.lastIdx) { return true; }",
+                            "",
+                            "                if (t && record) {",
+                            "                    data.lastIdx = idx;",
+                            "                    if( component.lastTarget === null ||  component.lastTarget !== idx)",
+                            "                    {",
+                            "                        component.store.remove(data.record);",
+                            "                        component.store.insert(idx, [data.record]);",
+                            "                        var node = component.getNodes(idx,idx);",
+                            "                        if(node.length > 0 )",
+                            "                        {",
+                            "                            node = node[0];",
+                            "                            var src = component.dragData.info.node;",
+                            "                            node.style.background =  src.style.background;",
+                            "                            var old_preloader = win.AppWindow_tpl_returnTilePreloader(data.node);",
+                            "                            var old_body = win.AppWindow_tpl_returnTileBody(data.node);",
+                            "",
+                            "                            if(old_body && old_body.style.display!==\"none\")",
+                            "                            {",
+                            "                                //App has been already loaded",
+                            "                                var preloader = win.AppWindow_tpl_returnTilePreloader(node);",
+                            "                                var body = win.AppWindow_tpl_returnTileBody(node);",
+                            "                                node.replaceChild(old_preloader,preloader);",
+                            "                                node.replaceChild(old_body,body);",
+                            "                                win.AppWindow_tpl_showTilePreloader(false,node);",
+                            "                                component.dragData.info.node = node;",
+                            "                            }",
+                            "                            else",
+                            "                            {",
+                            "                                // App hasn't been already loaded",
+                            "                                win.AppWindow_tpl_configureTilePreloader(node);",
+                            "                                win.AppWindow_tpl_configureTileBody(node);",
+                            "                            }",
+                            "",
+                            "                        }",
+                            "                    }",
+                            "                    return true;",
+                            "                }",
+                            "            } catch (ex) { return false; }",
+                            "            return false;",
+                            "",
+                            "",
+                            "        }",
+                            "    });",
+                            "",
+                            "    component.dropZone =  new Ext.dd.DropZone(component.el, {",
+                            "        ddGroup: CloudCommon.getNamespaceFromClass(component.$className),",
+                            "        onNodeEnter:function( nodeData, source, e, data )",
+                            "        {",
+                            "",
+                            "        },",
+                            "        getTargetFromEvent: function(e) {",
+                            "            return e.getTarget();",
+                            "        },",
+                            "        onNodeOut : function(target, dd, e, data){",
+                            "",
+                            "        },",
+                            "        onNodeOver : function(target, dd, e, data){",
+                            "            var crtTarget = e.getTarget(component.itemSelector);",
+                            "            component.lastTarget = component.indexOf(crtTarget);",
+                            "            return Ext.dd.DropZone.prototype.dropAllowed;",
+                            "        },",
+                            "        onNodeDrop : function(target, dd, e, data){",
+                            "            var el = Ext.fly(target);",
+                            "            var cls = component.itemSelector.replace(\"div.\",\"\");",
+                            "            if(!CloudCommon.hasClass(dd.dragData.ddel,cls))",
+                            "            {",
+                            "                //If it's not sort dragging",
+                            "                if(dd.dragData.record)",
+                            "                {",
+                            "                    win.AppWindow_tpl_addNewTile(dd.dragData.record);",
+                            "",
+                            "                }",
+                            "            }",
+                            "            return true;",
+                            "        }",
+                            "    });",
+                            "",
+                            "    win.AppWindow_tpl_setSidebarWidthOnRearrange();",
+                            "",
+                            "    component.store.on(\"datachanged\",function(str, eOpts){",
+                            "         win.AppWindow_tpl_setSidebarWidthOnRearrange();",
+                            "    });",
+                            "",
+                            "",
+                            "}"
+                        ],
+                        "name": "render",
+                        "scope": "me"
+                    },
+                    "designerId": "38a0f168-ad90-4cdb-a386-afbe0f84edd8"
+                }
+            ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "stretch",
+                "container|pack": "end",
+                "designer|displayName": "Container",
+                "layout": "vbox",
+                "layout|region": "center",
+                "role": "content"
+            },
+            "designerId": "2e13b88b-744d-434e-a828-2bd4e69ac52b",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "role",
+                    "type": "string"
+                }
+            ],
+            "cn": [
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "Header",
+                        "height": 40,
+                        "layout|flex": 1,
+                        "maxHeight": 40,
+                        "minHeight": 40,
+                        "role": "header"
+                    },
+                    "designerId": "a05a91da-9a5b-4485-a744-6c7076aa82b5",
+                    "customConfigs": [
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "role",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "AppBody",
+                        "layout|flex": 1,
+                        "role": "appbody"
+                    },
+                    "designerId": "f150133e-e121-44ab-9f56-785212cecc44",
+                    "customConfigs": [
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "role",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "Footer",
+                        "height": 40,
+                        "layout|flex": 1,
+                        "maxHeight": 40,
+                        "minHeight": 40,
+                        "role": "footer"
+                    },
+                    "designerId": "cc415bf1-cec4-464a-b7b4-e124f6def5cb",
+                    "customConfigs": [
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "role",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "autoScroll": true,
+                        "cls": "metro_appWindowTpl_listbar_container",
+                        "designer|displayName": "ListbarContainer",
+                        "height": 110,
+                        "layout": "fit",
+                        "layout|flex": 1,
+                        "maxHeight": 125,
+                        "minHeight": 110
+                    },
+                    "designerId": "7149f184-93b9-493e-aede-051455b1ec35",
+                    "cn": [
+                        {
+                            "type": "Ext.view.View",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": "metro_appWindowTpl_listbar",
+                                "designer|displayName": "listbar",
+                                "dragItemSize": [
+                                    "{",
+                                    "    width: 100,",
+                                    "    height: 100",
+                                    "}"
+                                ],
+                                "height": 110,
+                                "itemSelector": "div.metro_appWindowTpl_listbar_wdg",
+                                "itemSize": [
+                                    "{",
+                                    "    width: 105,",
+                                    "    height: 110",
+                                    "}"
+                                ],
+                                "maxHeight": 125,
+                                "minHeight": 110,
+                                "role": "listbar"
+                            },
+                            "configAlternates": {
+                                "dragItemSize": "object",
+                                "itemSize": "object"
+                            },
+                            "designerId": "bec65977-702a-4901-9a47-078bcce9a8c9",
+                            "customConfigs": [
+                                {
+                                    "group": "(Custom Properties)",
+                                    "name": "dragItemSize",
+                                    "type": "string"
+                                },
+                                {
+                                    "group": "(Custom Properties)",
+                                    "name": "itemSize",
+                                    "type": "string"
+                                },
+                                {
+                                    "group": "(Custom Properties)",
+                                    "name": "role",
+                                    "type": "string"
+                                }
+                            ],
+                            "cn": [
+                                {
+                                    "type": "Ext.XTemplate",
+                                    "reference": {
+                                        "name": "itemTpl",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "itemTpl",
+                                        "implHandler": [
+                                            "<tpl for = \".\">",
+                                            "    <div class =\"metro_appWindowTpl_listbar_wdg\">",
+                                            "        <img  src=\"{icon}\">   ",
+                                            "    </div>",
+                                            "</tpl>",
+                                            ""
+                                        ]
+                                    },
+                                    "designerId": "eeaab63a-daaf-465d-a1fb-2ad9f2f86bf3"
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onDataviewRender1",
+                                        "implHandler": [
+                                            "var win = component.up(\"window\");",
+                                            "if(win)",
+                                            "{",
+                                            "    component.el.on(\"contextmenu\", Ext.emptyFn, null, {preventDefault: true});",
+                                            "    ",
+                                            "    //Create drag zone for icon",
+                                            "    component.dragZone = new Ext.dd.DragZone(component.el, {",
+                                            "        ",
+                                            "        ddGroup: CloudCommon.getNamespaceFromClass(component.$className),",
+                                            "        endDrag : function(e) {",
+                                            "            //win.Tpl_Sidebar_vw_updateHandlerBar();",
+                                            "            if (!component.dragData) { return true; }",
+                                            "            return true;",
+                                            "        },",
+                                            "        getDragData: function(e) {",
+                                            "            var sourceEl = e.getTarget(component.itemSelector);",
+                                            "            var idx = component.indexOf(sourceEl);",
+                                            "            if (sourceEl) {",
+                                            "                d = sourceEl.cloneNode(true);",
+                                            "                d.style.width = component.dragItemSize.width +\"px\";",
+                                            "                d.style.height = component.dragItemSize.height +\"px\";",
+                                            "                d.id = Ext.id();",
+                                            "                return component.dragData = {",
+                                            "                    sourceEl: sourceEl,",
+                                            "                    repairXY: Ext.fly(sourceEl).getXY(),",
+                                            "                    ddel: d,",
+                                            "                    record:(component.store.getAt(idx))?component.store.getAt(idx):null",
+                                            "                };",
+                                            "            }",
+                                            "        },",
+                                            "        getRepairXY: function() {",
+                                            "            return component.dragData.repairXY;",
+                                            "        },",
+                                            "        onMouseDown:function( e )",
+                                            "        {",
+                                            "            var t,idx,record;",
+                                            "            try {",
+                                            "                t = e.getTarget(component.itemSelector);",
+                                            "                this.setDelta(50,50);",
+                                            "            }",
+                                            "            catch(ex){",
+                                            "                return false;",
+                                            "            }",
+                                            "        }",
+                                            "    });",
+                                            "    ",
+                                            "    ",
+                                            "    ",
+                                            "    component.dropZone =  new Ext.dd.DropZone(component.el, {",
+                                            "        ddGroup: CloudCommon.getNamespaceFromClass(component.$className),",
+                                            "        onNodeEnter:function( nodeData, source, e, data )",
+                                            "        {",
+                                            "            ",
+                                            "        },",
+                                            "        getTargetFromEvent: function(e) {",
+                                            "            return e.getTarget();",
+                                            "        },",
+                                            "        onNodeOut : function(target, dd, e, data){",
+                                            "        },",
+                                            "        onNodeOver : function(target, dd, e, data){",
+                                            "            return Ext.dd.DropZone.prototype.dropAllowed;",
+                                            "        },",
+                                            "        onNodeDrop : function(target, dd, e, data){",
+                                            "            var el = Ext.fly(target);",
+                                            "            var cls = component.itemSelector.replace(\"div.\",\"\");",
+                                            "            if(!CloudCommon.hasClass(dd.dragData.ddel,cls))",
+                                            "            {",
+                                            "                var src = dd.dragData.sourceEl;",
+                                            "                var record = dd.dragData.record;",
+                                            "                win.AppWindow_tpl_removeTile(record,src);",
+                                            "                ",
+                                            "            }",
+                                            "            return true;",
+                                            "            ",
+                                            "        }",
+                                            "    });",
+                                            "    var me = component;",
+                                            "    component.f = function()",
+                                            "    {",
+                                            "        //Set Width",
+                                            "        component.minWidth = me.store.getCount() * component.itemSize.width;",
+                                            "        component.maxWidth = me.store.getCount() * component.itemSize.width;",
+                                            "        component.setWidth(me.store.getCount() * component.itemSize.width);",
+                                            "        //Set Height",
+                                            "        component.minHeight = component.itemSize.height;",
+                                            "        component.maxHeight = component.itemSize.height;",
+                                            "        component.setHeight = component.itemSize.height;",
+                                            "        console.log(me.store.getCount());",
+                                            "    };",
+                                            "    component.f();",
+                                            "    var cnt = component.up(\"container\");",
+                                            "    component.store.on(\"datachanged\",function(str, eOpts){",
+                                            "        var sizeEl = this.getCount() * component.itemSize.width;",
+                                            "        if(sizeEl <= cnt.el.dom.clientWidth) cnt.el.dom.style.overflowX = 'hidden';",
+                                            "        else cnt.el.dom.style.overflowX = 'auto';",
+                                            "        ",
+                                            "        component.f();",
+                                            "        ",
+                                            "    });",
+                                            "    ",
+                                            "}",
+                                            "",
+                                            ""
+                                        ],
+                                        "name": "render",
+                                        "scope": "me"
+                                    },
+                                    "designerId": "4a13c29c-5ca0-4b6d-acf6-99d06f532649"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,233 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "controllers": [
+            "[",
+            "    ",
+            "    \"MainCnt\"",
+            "    ",
+            "]"
+        ],
+        "designer|userClassName": "TemplateCnt_tpl",
+        "mixins": [
+            "{",
+            "    mix:\"MetroMixin.controller.TemplateCnt_tpl\"",
+            "    ",
+            "}"
+        ],
+        "models": [
+            "TemplateMdl_App",
+            "TemplateMdl_AppPreference"
+        ],
+        "stores": [
+            "TemplateStr_Apps",
+            "TemplateStr_AppPreferences",
+            "TemplateStr_RunningWidget"
+        ]
+    },
+    "configAlternates": {
+        "controllers": "array"
+    },
+    "designerId": "77058db6-3210-470a-b55e-545570c7bfbe",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "controllers",
+            "type": "string"
+        }
+    ],
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "application"
+                ],
+                "fn": "tplCnt_initialize",
+                "implHandler": [
+                    "",
+                    "var appRef = CloudCommon.getAppRef(this.$className);",
+                    "appRef = (appRef.app)?appRef.app:null;",
+                    "",
+                    "var main_cnt = this.getMainCntController();",
+                    "",
+                    "var runningWdgStoreRef = this.getTemplateStr_RunningWidgetStore();",
+                    "var appListStoreRef = this.getTemplateStr_AppsStore();",
+                    "var appPrefStoreRef = this.getTemplateStr_AppPreferencesStore();",
+                    "",
+                    "var preloader = this.TemplateCnt_tpl_getPreloader();",
+                    "",
+                    "var me = this;",
+                    "var funLoadPrefs = function()",
+                    "{",
+                    "    //1) Load App Preferences",
+                    "    var scope  = this;",
+                    "    var appName = appRef.name ;",
+                    "",
+                    "    //Generic Error Handler",
+                    "    var errorCB = function(err)",
+                    "    {",
+                    "                    console.log(\"PUPU\");",
+                    "",
+                    "        console.log(err);",
+                    "    };",
+                    "    //Success Handler",
+                    "    var prefLoaded = function(res)",
+                    "    {",
+                    "        console.log(\"IOOA\");",
+                    "",
+                    "        //Prefs Founded --> Load sidebar",
+                    "        if(preloader && preloader.isVisible()) preloader.updateText(CloudCommon.getTranslationFor(appRef.name,\"PREF_LOADED\"));",
+                    "",
+                    "        var rec = appPrefStoreRef.getAt(0);",
+                    "        var prefs = rec.get(\"preferences\");",
+                    "        var parameters =",
+                    "            {",
+                    "                preloader: me.TemplateCnt_tpl_getPreloader(),",
+                    "                app: application,",
+                    "                preferences: prefs",
+                    "            };",
+                    "        if(appRef && main_cnt && typeof main_cnt.mainCnt_onStart === \"function\") main_cnt.mainCnt_onStart(parameters);",
+                    "",
+                    "    };",
+                    "    //No Prefs found for app ---> let create it",
+                    "    var noPrefFound = function(err)",
+                    "    {",
+                    "       if(preloader && preloader.isVisible()) preloader.updateText(CloudCommon.getTranslationFor(appRef.name,\"NOPREF_FOUND\"));",
+                    "        //The timeout is just to show the preloader msg",
+                    "        setTimeout(function(){",
+                    "            appPrefStoreRef.pInsert({",
+                    "                id:appName,",
+                    "                app_id:appName,",
+                    "                preferences:",
+                    "                {",
+                    "                    sidebar:{}",
+                    "                }",
+                    "            },prefLoaded,errorCB,scope);",
+                    "",
+                    "        },600);",
+                    "",
+                    "    };",
+                    "    //Show Preloader info",
+                    "    if(preloader.isHidden()) preloader.show(); //Show Preloader",
+                    "    if(preloader && preloader.isVisible()) preloader.updateText(CloudCommon.getTranslationFor(appRef.name,\"PREF_LOADING\"));",
+                    "    setTimeout(function(){",
+                    "        appPrefStoreRef.searchById(appName,prefLoaded,noPrefFound,scope);",
+                    "    },800);",
+                    "",
+                    "",
+                    "};",
+                    "",
+                    "",
+                    "if(preloader && preloader.isVisible()) preloader.updateText(CloudCommon.getTranslationFor(appRef.name,\"APPLIST_LOADING\"));",
+                    "",
+                    "var funLoadAppList = function()",
+                    "{",
+                    "    appListStoreRef.load(function(){",
+                    "        if(preloader && preloader.isVisible()) preloader.updateText(CloudCommon.getTranslationFor(appRef.name,\"APPLIST_LOADED\"));",
+                    "        funLoadPrefs();",
+                    "    });",
+                    "",
+                    "};",
+                    "",
+                    "",
+                    "funLoadAppList();",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                ]
+            },
+            "designerId": "b5579b42-e23a-45ae-b118-28efb32edc9e"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "application"
+                ],
+                "fn": "tplCnt_deInitialize",
+                "implHandler": [
+                    ""
+                ]
+            },
+            "designerId": "1688645f-ae45-4563-8653-b85f33d3bdbf"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "application"
+                ],
+                "fn": "tplCnt_dismiss",
+                "implHandler": [
+                    ""
+                ]
+            },
+            "designerId": "1278c671-6882-4c15-a888-1be3fd4e31ad"
+        },
+        {
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onLaunch",
+                "implHandler": [
+                    "",
+                    "//Ext.create('TemplateMetro.view.AppWindow_tpl', {renderTo: Ext.getBody()}).show();",
+                    "",
+                    "var appRef = CloudCommon.getAppRef(this.$className);",
+                    "appRef = (appRef.app)?appRef.app:null;",
+                    "var cnt = this.getMainCntController();",
+                    "",
+                    "",
+                    "",
+                    "var preloader = this.TemplateCnt_tpl_getPreloader();",
+                    "preloader.show(); //Show Preloader",
+                    "preloader.updateText(CloudCommon.getTranslationFor(appRef.name,\"MSG_LOADING\"));",
+                    "",
+                    "if(appRef && cnt)",
+                    "{",
+                    "    var params =",
+                    "        {",
+                    "            preloader: preloader,",
+                    "            app: appRef",
+                    "        };",
+                    "",
+                    "    if(typeof cnt.mainCnt_onInit === \"function\") cnt.mainCnt_onInit(this.tplCnt_initialize,params,this);",
+                    "    else this.tplCnt_initialize(appRef);",
+                    "}"
+                ]
+            },
+            "designerId": "554f64f3-ce78-4b5c-935f-647e3b8bad58"
+        }
+    ]
+}

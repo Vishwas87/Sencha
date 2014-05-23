@@ -1,0 +1,13 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js5",
+        "url": "../../../libJS/TemplateMetro/W8Preloader.js"
+    },
+    "designerId": "9d634d86-a99a-46c8-b55a-943f5da850ae"
+}

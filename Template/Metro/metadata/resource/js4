@@ -1,0 +1,13 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js4",
+        "url": "../../../libJS/TemplateMetro/TemplateMixinMetro.js"
+    },
+    "designerId": "d558aadb-0acb-4128-ba17-8256a2999f1f"
+}

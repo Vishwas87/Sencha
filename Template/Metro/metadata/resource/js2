@@ -1,0 +1,14 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js2",
+        "id": "PouchDBJS",
+        "url": "../../../libJS/TemplateMetro/pouchdb.js"
+    },
+    "designerId": "eee79165-141c-45b8-9d98-79cb99ea839b"
+}

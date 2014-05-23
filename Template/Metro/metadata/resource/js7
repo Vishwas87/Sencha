@@ -1,0 +1,13 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js7",
+        "url": "../../../libJS/TemplateMetro/Application.js"
+    },
+    "designerId": "622b390b-4543-4bf2-a110-9e3ec7ad33c8"
+}

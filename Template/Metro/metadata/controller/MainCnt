@@ -1,0 +1,102 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "MainCnt",
+        "mixins": [
+            "{",
+            "    mix: \"MetroMixin.controller.MainCnt\"",
+            "}"
+        ]
+    },
+    "designerId": "39fe22be-0ab0-4673-9e3d-5230f72a3459",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback",
+                    "parameters",
+                    "scope"
+                ],
+                "fn": "mainCnt_onInit",
+                "implHandler": [
+                    "",
+                    "var preloader = parameters.preloader; //Use preloader to comunicate change of status during initialization",
+                    "",
+                    "console.log(parameters);",
+                    "//Don't Forget to call",
+                    "if(typeof callback === \"function\") callback.call(scope,parameters);",
+                    "",
+                    ""
+                ]
+            },
+            "designerId": "6fdfaded-845e-41d2-a65b-d0375531e321"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "parameters"
+                ],
+                "fn": "mainCnt_onStart",
+                "implHandler": [
+                    "",
+                    "console.log(parameters);",
+                    "",
+                    "var preloader = parameters.preloader;",
+                    "var prefs = parameters.preferences;",
+                    "",
+                    "/*Create the main view*/",
+                    "var win = this.MainCnt_getMainViewRef();",
+                    "win.prefs = prefs;",
+                    "",
+                    "prefs = null;",
+                    "parameters = null;",
+                    "",
+                    "preloader.dismiss(null,function(){",
+                    "    //Show main View after preloader has been hidden",
+                    "    win.show();",
+                    "},this);",
+                    "",
+                    ""
+                ]
+            },
+            "designerId": "6b0cba39-7a5a-47d8-904d-c9a8df1a4065"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback",
+                    "parameters",
+                    "scope"
+                ],
+                "fn": "mainCnt_onClose",
+                "implHandler": [
+                    ""
+                ]
+            },
+            "designerId": "4c5e2bef-218a-4518-991b-f8261fd3f206"
+        }
+    ]
+}

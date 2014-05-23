@@ -1,0 +1,13 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js",
+        "url": "../../../libJS/TemplateMetro/CloudCommon.js"
+    },
+    "designerId": "684dfbe5-842e-4cca-b8f3-9977ddda7ad7"
+}
