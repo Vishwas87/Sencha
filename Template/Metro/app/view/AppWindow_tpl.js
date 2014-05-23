@@ -58,7 +58,6 @@ Ext.define('Metro.view.AppWindow_tpl', {
             items: [
                 {
                     xtype: 'dataview',
-                    region: 'east',
                     preloaderSize: {
                         width: 48,
                         height: 48
@@ -68,6 +67,7 @@ Ext.define('Metro.view.AppWindow_tpl', {
                         height: 100
                     },
                     role: 'sidebar',
+                    region: 'east',
                     cls: 'metro_appWindowTpl_sidebar',
                     maxWidth: 325,
                     minWidth: 310,
@@ -105,8 +105,8 @@ Ext.define('Metro.view.AppWindow_tpl', {
                 },
                 {
                     xtype: 'container',
-                    region: 'center',
                     role: 'content',
+                    region: 'center',
                     layout: {
                         type: 'vbox',
                         align: 'stretch',
@@ -115,21 +115,21 @@ Ext.define('Metro.view.AppWindow_tpl', {
                     items: [
                         {
                             xtype: 'container',
-                            flex: 1,
                             role: 'header',
+                            flex: 1,
                             height: 40,
                             maxHeight: 40,
                             minHeight: 40
                         },
                         {
                             xtype: 'container',
-                            flex: 1,
-                            role: 'appbody'
+                            role: 'appbody',
+                            flex: 1
                         },
                         {
                             xtype: 'container',
-                            flex: 1,
                             role: 'footer',
+                            flex: 1,
                             height: 40,
                             maxHeight: 40,
                             minHeight: 40
